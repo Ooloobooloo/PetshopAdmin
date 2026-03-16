@@ -1,26 +1,30 @@
 <%- include('../../partials/header') %>
 
 
-<main>
-    <h1>Danh mục thú cưng</h1>
-    <a href="/admin/category/create">Thêm danh mục mới</a>
-    <ul class="directory-list">
+<div class="container mt-4">
+    <h1 class="mb-4">Danh mục thú cưng</h1>
+    <a href="/admin/category/create" class="btn btn-primary mb-3">Thêm danh mục mới</a>
+    <div class="row">
         <% if (categories.length > 0) { %>
             <% categories.forEach(category => { %>
-                <li class="directory-item">
-                    <strong><%= category.name %></strong><br>
-                    <%= category.description %>
-                    <form action="/admin/category/delete/<%= category._id %>" method="POST" style="display:inline;">
-                        <button type="submit">Xóa</button>
-                    </form>
-                </li>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= category.name %></h5>
+                            <p class="card-text"><%= category.description %></p>
+                            <form action="/admin/category/delete/<%= category._id %>" method="POST" class="d-inline">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc muốn xóa?')">Xóa</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             <% }) %>
         <% } else { %>
-            <p>Không có danh mục nào.</p>
+            <div class="col-12">
+                <div class="alert alert-info">Không có danh mục nào.</div>
+            </div>
         <% } %>
-    </ul>
-</main>
-
-
+    </div>
+</div>
 
 <%- include('../../partials/footer') %>

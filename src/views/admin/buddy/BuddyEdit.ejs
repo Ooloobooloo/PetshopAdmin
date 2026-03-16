@@ -1,38 +1,55 @@
 <%- include('../../partials/header') %>
 
-<main>
-    <h1>Sửa thú cưng</h1>
-    <form action="/admin/buddy/update/<%= buddy._id %>" method="POST">
-        <label for="name">Tên:</label>
-        <input type="text" id="name" name="name" value="<%= buddy.name %>" required><br><br>
+<div class="container mt-4">
+    <h1 class="mb-4">Sửa thú cưng</h1>
+    <form action="/admin/buddy/update/<%= buddy._id %>" method="POST" class="row g-3">
+        <div class="col-md-6">
+            <label for="name" class="form-label">Tên:</label>
+            <input type="text" id="name" name="name" class="form-control" value="<%= buddy.name %>" required>
+        </div>
 
-        <label for="category">Danh mục:</label>
-        <select id="category" name="category" required>
-            <% categories.forEach(category => { %>
-                <option value="<%= category._id %>" <%= buddy.category && buddy.category._id.equals(category._id) ? 'selected' : '' %>><%= category.name %></option>
-            <% }) %>
-        </select><br><br>
+        <div class="col-md-6">
+            <label for="category" class="form-label">Danh mục:</label>
+            <select id="category" name="category" class="form-select" required>
+                <% categories.forEach(category => { %>
+                    <option value="<%= category._id %>" <%= buddy.category && buddy.category._id.equals(category._id) ? 'selected' : '' %>><%= category.name %></option>
+                <% }) %>
+            </select>
+        </div>
 
-        <label for="age">Tuổi:</label>
-        <input type="number" id="age" name="age" value="<%= buddy.age %>" required><br><br>
+        <div class="col-md-4">
+            <label for="age" class="form-label">Tuổi:</label>
+            <input type="number" id="age" name="age" class="form-control" value="<%= buddy.age %>" required>
+        </div>
 
-        <label for="gender">Giới tính:</label>
-        <select id="gender" name="gender" required>
-            <option value="Đực" <%= buddy.gender === 'Đực' ? 'selected' : '' %>>Đực</option>
-            <option value="Cái" <%= buddy.gender === 'Cái' ? 'selected' : '' %>>Cái</option>
-        </select><br><br>
+        <div class="col-md-4">
+            <label for="gender" class="form-label">Giới tính:</label>
+            <select id="gender" name="gender" class="form-select" required>
+                <option value="Đực" <%= buddy.gender === 'Đực' ? 'selected' : '' %>>Đực</option>
+                <option value="Cái" <%= buddy.gender === 'Cái' ? 'selected' : '' %>>Cái</option>
+            </select>
+        </div>
 
-        <label for="breed">Giống loài:</label>
-        <input type="text" id="breed" name="breed" value="<%= buddy.breed %>" required><br><br>
+        <div class="col-md-4">
+            <label for="breed" class="form-label">Giống loài:</label>
+            <input type="text" id="breed" name="breed" class="form-control" value="<%= buddy.breed %>" required>
+        </div>
 
-        <label for="image">Hình ảnh (URL):</label>
-        <input type="url" id="image" name="image" value="<%= buddy.image %>"><br><br>
+        <div class="col-12">
+            <label for="image" class="form-label">Hình ảnh (URL):</label>
+            <input type="url" id="image" name="image" class="form-control" value="<%= buddy.image %>">
+        </div>
 
-        <label for="description">Mô tả:</label>
-        <textarea id="description" name="description"><%= buddy.description %></textarea><br><br>
+        <div class="col-12">
+            <label for="description" class="form-label">Mô tả:</label>
+            <textarea id="description" name="description" class="form-control" rows="3"><%= buddy.description %></textarea>
+        </div>
 
-        <button type="submit">Cập nhật</button>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Cập nhật</button>
+            <a href="/admin/buddy/list" class="btn btn-secondary">Hủy</a>
+        </div>
     </form>
-</main>
+</div>
 
 <%- include('../../partials/footer') %>
