@@ -22,10 +22,6 @@ if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 // Middleware xử lý dữ liệu từ Form (URL Encoded)
 app.use(express.urlencoded({ extended: true }));
 
-// Routes API
-app.use('/api/v1/buddies', BuddyRoutes);
-app.use('/api/v1/categories', CategoryRoutes);
-
 // Admin Routes
 app.use('/admin/buddy', adminBuddyRoutes);
 app.use('/admin/category', adminCategoryRoutes);
