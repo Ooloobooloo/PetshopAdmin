@@ -1,0 +1,26 @@
+<%- include('../../partials/header') %>
+
+
+<main>
+    <h1>Danh mục thú cưng</h1>
+    <a href="/admin/category/create">Thêm danh mục mới</a>
+    <ul class="directory-list">
+        <% if (categories.length > 0) { %>
+            <% categories.forEach(category => { %>
+                <li class="directory-item">
+                    <strong><%= category.name %></strong><br>
+                    <%= category.description %>
+                    <form action="/admin/category/delete/<%= category._id %>" method="POST" style="display:inline;">
+                        <button type="submit">Xóa</button>
+                    </form>
+                </li>
+            <% }) %>
+        <% } else { %>
+            <p>Không có danh mục nào.</p>
+        <% } %>
+    </ul>
+</main>
+
+
+
+<%- include('../../partials/footer') %>

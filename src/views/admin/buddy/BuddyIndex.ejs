@@ -1,0 +1,50 @@
+<%- include('../../partials/header') %>
+
+
+<main>
+    <h1>Danh sách thú cưng</h1>
+    <a href="/admin/buddy/create">Thêm thú cưng mới</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Tên</th>
+                <th>Danh mục</th>
+                <th>Tuổi</th>
+                <th>Giới tính</th>
+                <th>Giống loài</th>
+                <th>Hình ảnh</th>
+                <th>Mô tả</th>
+                <th>Hành động</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% if (buddies.length > 0) { %>
+                <% buddies.forEach(buddy => { %>
+                    <tr>
+                        <td><%= buddy.name %></td>
+                        <td><%= buddy.category ? buddy.category.name : 'N/A' %></td>
+                        <td><%= buddy.age %></td>
+                        <td><%= buddy.gender %></td>
+                        <td><%= buddy.breed %></td>
+                        <td><img src="<%= buddy.image %>" alt="<%= buddy.name %>" width="50"></td>
+                        <td><%= buddy.description %></td>
+                        <td>
+                            <a href="/admin/buddy/edit/<%= buddy._id %>">Sửa</a>
+                            <form action="/admin/buddy/delete/<%= buddy._id %>" method="POST" style="display:inline;">
+                                <button type="submit">Xóa</button>
+                            </form>
+                        </td>
+                    </tr>
+                <% }) %>
+            <% } else { %>
+                <tr>
+                    <td colspan="8">Không có thú cưng nào.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</main>
+
+
+
+<%- include('../../partials/footer') %>

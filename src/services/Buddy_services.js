@@ -1,7 +1,7 @@
 const Buddy = require('../models/Buddy');
 
 exports.findAll = async () => {
-  return await Buddy.find();
+  return await Buddy.find().populate('category');   
 };
 
 exports.create = async (buddyData) => {
@@ -19,6 +19,6 @@ exports.update = async (id, buddyData) => {
 
 exports.delete = async (id) => {
     return await Buddy.findByIdAndDelete(id);
-};      
+};
 
 
