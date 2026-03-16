@@ -1,12 +1,12 @@
-const Buddyrouter = require('../controllers/Buddy_controller');
+const { getAllBuddies, createBuddy, getBuddyById, updateBuddy, deleteBuddy } = require('../controllers/Buddy_controllers');
 const express = require('express');
 const router = express.Router();    
 
 
-router.get('/', Buddyrouter.getAllBuddies);
-router.post('/', Buddyrouter.createBuddy);
-router.get('/:id', Buddyrouter.getBuddyById);
-router.put('/:id', Buddyrouter.updateBuddy);
-router.delete('/:id', Buddyrouter.deleteBuddy);
+router.get('/', getAllBuddies);
+router.post('/', createBuddy);
+router.get('/:id', getBuddyById);
+router.put('/:id', updateBuddy);
+router.delete('/:id', deleteBuddy);
 
-module.exports = Buddyrouter;
+module.exports = router;

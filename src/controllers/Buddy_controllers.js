@@ -19,6 +19,34 @@ const createBuddy = async (req, res) => {
     }       
 };
 
+const getBuddyById = async (req, res) => {
+    try {
+        const buddy = await BuddyServices.findById(req.params.id);
+        res.json(buddy);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
+const updateBuddy = async (req, res) => {
+    try {
+        const buddyData = req.body;
+        const updatedBuddy = await BuddyServices.update(req.params.id, buddyData);
+        res.json(updatedBuddy);
+    } catch (error) {
+        res.status(400).json({ message: error.message });
+    }
+};
+
+const deleteBuddy = async (req, res) => {
+    try {
+        await BuddyServices.delete(req.params.id);
+        res.status(204).send();
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+};
+
 const listBuddiesAdmin = async (req, res) => {
     try {
         const buddies = await BuddyServices.findAll();
@@ -60,7 +88,7 @@ const editBuddyForm = async (req, res) => {
     }
 };
 
-const updateBuddy = async (req, res) => {
+const updateBuddyAdmin = async (req, res) => {
     try {
         const buddyData = req.body;
         await BuddyServices.update(req.params.id, buddyData);
@@ -70,7 +98,7 @@ const updateBuddy = async (req, res) => {
     }
 };
 
-const deleteBuddy = async (req, res) => {
+const deleteBuddyAdmin = async (req, res) => {
     try {
         await BuddyServices.delete(req.params.id);
         res.redirect('/admin/buddy/list');
@@ -82,10 +110,13 @@ const deleteBuddy = async (req, res) => {
 module.exports = {
     getAllBuddies,
     createBuddy,
+    getBuddyById,
+    updateBuddy,
+    deleteBuddy,
     listBuddiesAdmin,
     createBuddyForm,
     storeBuddy,
     editBuddyForm,
-    updateBuddy,
-    deleteBuddy
+    updateBuddyAdmin,
+    deleteBuddyAdmin
 };
